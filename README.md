@@ -1,43 +1,50 @@
-# ecowitt-baixar
+fork of ecowitt-baixar by marciordg
 
-Baixa os dados de uma estação meteorológica **Ecowitt** usando apenas o **link de compartilhamento** (não precisa ser dono da conta).
+[ecowitt-baixar](https://github.com/marciordg/ecowitt-baixar)
 
-Gera os mesmos arquivos `.xlsx` do botão *Export* do site ecowitt.net, **um arquivo por dia**, nas unidades °C, hPa, m/s, mm e W/m².
+# ecowitt-XLS-Downloader
 
-- Resolução: a que a nuvem ainda guardar (5 min nos últimos ~90 dias, 30 min antes disso).
-- Horário: o local da estação, como no site.
-- Só baixa os dias que ainda não existem na pasta; nunca sobrescreve.
-- Usa só a biblioteca padrão do Python 3.9+ (nada para instalar).
+Downloads data from an **Ecowitt** weather station using only the **share link** (no need to be the account owner).
 
-## Uso
+Generates the same `.xlsx` files as the *Export* button on the ecowitt.net website, **one file per day**, in the units °C, hPa, m/s, mm, and W/m².
 
-Com janela (cole o link, escolha a data inicial e a pasta):
+* Resolution: whatever the cloud still stores (5 min for the last ~90 days, 30 min before that).
+* Time: the station's local time, as on the website.
+* Only downloads days that do not already exist in the folder; never overwrites.
+* Uses only the Python 3.9+ standard library (nothing to install).
+
+## Usage
+
+With a window (paste the link, choose the start date and the folder):
 
 ```bash
 python ecowitt_baixar.py
+
 ```
 
-A janela tem duas abas:
+The window has two tabs:
 
-- **Baixar**: link, data inicial e pasta. O programa lembra o último link e a última pasta usados (em `~/.ecowitt_baixar.json`, fora do repositório). Se o link mudar, é só colar o novo.
-- **Sobre**: dados da estação (edite o texto `SOBRE` no início do script) e o botão *Consultar estação pelo link*, que mostra o que a Ecowitt informa sobre a estação compartilhada.
+* **Download**: link, start date, and folder. The program remembers the last used link and folder (in `~/.ecowitt_baixar.json`, outside the repository). If the link changes, just paste the new one.
+* **About**: station data (edit the `SOBRE` text at the beginning of the script) and the *Consult station via link* button, which shows what Ecowitt reports about the shared station.
 
-Se a data inicial tiver mais de 90 dias, o programa avisa que esses dias vêm com resolução de 30 min em vez de 5 min.
+If the start date is more than 90 days ago, the program warns that those days come with a 30 min resolution instead of 5 min.
 
-Sem janela (útil para o Agendador de Tarefas / cron):
+Without a window (useful for Task Scheduler / cron):
 
 ```bash
-python ecowitt_baixar.py "LINK_DE_COMPARTILHAMENTO" 19/06/2026 [PASTA]
+python ecowitt_baixar.py "SHARE_LINK" 19/06/2026 [FOLDER]
+
 ```
 
-Se a pasta não for informada, os arquivos vão para `dados/` ao lado do script.
+If the folder is not specified, the files will go to `dados/` next to the script.
 
-Teste rápido das funções internas:
+Quick test of the internal functions:
 
 ```bash
 python ecowitt_baixar.py --teste
+
 ```
 
-## Atenção
+## Attention
 
-Não coloque o link de compartilhamento da sua estação no repositório: quem tiver o link consegue ver os dados.
+Do not put your station's share link in the repository: anyone with the link can view the data.
